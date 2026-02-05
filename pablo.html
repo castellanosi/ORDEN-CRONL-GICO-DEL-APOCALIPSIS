@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Orden Cronológico de los Libros del Apóstol Pablo - Estudio Bíblico">
+    <title>Orden Cronológico - Apóstol Pablo</title>
+    
+    <!-- Fuentes de Google: Merriweather para lectura, Inter para interfaz -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Paleta de colores Oscura (Dark Mode) optimizada para lectura */
+            --bg-color: #18181b;       /* Zinc 900 - Fondo principal */
+            --sidebar-bg: #121212;     /* Fondo sidebar */
+            --text-main: #d4d4d8;      /* Zinc 300 - Texto principal (no blanco puro) */
+            --text-heading: #fbbf24;   /* Amber 400 - Títulos (Dorado suave) */
+            --text-muted: #71717a;     /* Zinc 500 - Metadatos/Versículos */
+            --accent: #f59e0b;         /* Amber 500 - Acentos */
+            --border: #27272a;         /* Bordes sutiles */
+            
+            /* Tipografía */
+            --font-body: 'Merriweather', serif;
+            --font-heading: 'Inter', sans-serif;
+            --line-height: 1.8;        /* Espaciado generoso */
+            --max-width: 75ch;         /* Ancho óptimo de lectura (aprox 75 caracteres) */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: var(--line-height);
+            font-size: 18px; /* Tamaño base grande para comodidad */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Layout */
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar de Navegación (Tabla de Contenidos) */
+        .sidebar {
+            width: 300px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
+            padding: 2rem;
+            display: none; /* Oculto en móvil por defecto */
+            font-family: var(--font-heading);
+        }
+
+        @media (min-width: 1024px) {
+            .sidebar {
+                display: block;
+            }
+        }
+
+        .sidebar h3 {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.8rem;
+        }
+
+        .toc-link {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+            display: block;
+            line-height: 1.4;
+            opacity: 0.8;
+        }
+
+        .toc-link:hover, .toc-link.active {
+            color: var(--accent);
+            opacity: 1;
+        }
+
+        .toc-sublink {
+            padding-left: 1rem;
+            font-size: 0.85rem;
+            border-left: 1px solid var(--border);
+            margin-top: 0.5rem;
+        }
+
+        /* Contenido Principal */
+        .main-content {
+            flex: 1;
+            padding: 2rem 1.5rem;
+            width: 100%;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding-bottom: 4rem;
+        }
+
+        /* Tipografía de Títulos */
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            color: var(--text-heading);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-top: 1rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+            margin-top: 4rem;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            color: #e4e4e7; /* Un poco más claro que el texto normal */
+            margin-top: 2.5rem;
+        }
+
+        /* Párrafos y Estilos de Texto */
+        p {
+            margin-bottom: 1.5rem;
+            text-align: justify; /* Alineación justificada para aspecto de libro */
+        }
+
+        .date-highlight {
+            color: var(--accent);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.9em;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Enlaces dentro del contenido */
+        .content-link {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--accent);
+            transition: all 0.2s;
+        }
+
+        .content-link:hover {
+            color: #fff;
+            border-bottom: 1px solid #fff;
+        }
+
+        /* Botón Menú Móvil */
+        .mobile-menu-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            z-index: 1000;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: block;
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+
+        /* Overlay para menú móvil */
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 998;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .mobile-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100%;
+            background: var(--sidebar-bg);
+            z-index: 999;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            padding: 2rem;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+        }
+
+        .mobile-sidebar.active {
+            right: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="layout">
+        <!-- Sidebar Desktop -->
+        <aside class="sidebar">
+            <h3>Índice</h3>
+            <nav id="toc-desktop" class="toc-list"></nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            <div class="container">
+                
+                <h1>ORDEN CRONOLÓGICO DE LOS LIBROS DEL APÓSTOL PABLO</h1>
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 3rem;">Incluyendo Hechos y el Evangelio de Lucas</p>
+
+                <section>
+                    <h2>Las Cartas y Escritos</h2>
+
+                    <h3>Gálatas</h3>
+                    <p>
+                        <span class="date-highlight">48-49 d.C.</span>
+                        Pablo defiende que la salvación es por fe y no por cumplir la ley judía. Es una carta apasionada dirigida a las iglesias de Galacia tras su primer viaje misionero.
+                    </p>
+
+                    <h3>1 Tesalonicenses</h3>
+                    <p>
+                        <span class="date-highlight">51 d.C.</span>
+                        Una de sus cartas más antiguas, escrita desde Corinto para animar a creyentes nuevos. Se enfoca en la esperanza de la segunda venida de Cristo y la santidad.
+                    </p>
+
+                    <h3>2 Tesalonicenses</h3>
+                    <p>
+                        <span class="date-highlight">51-52 d.C.</span>
+                        Escrita poco después de la primera para corregir malentendidos sobre el "Día del Señor". Pablo aclara que ciertos eventos deben ocurrir antes del fin del mundo.
+                    </p>
+
+                    <h3>1 Corintios</h3>
+                    <p>
+                        <span class="date-highlight">55 d.C.</span>
+                        Una carta correctiva que aborda divisiones, desorden en la cena del Señor y dudas sobre la resurrección. Contiene el famoso capítulo sobre el amor (cap. 13).
+                    </p>
+
+                    <h3>2 Corintios</h3>
+                    <p>
+                        <span class="date-highlight">56 d.C.</span>
+                        Pablo defiende su autoridad apostólica ante críticos en Corinto y explica la naturaleza del ministerio. Es su carta más personal y emocionalmente transparente.
+                    </p>
+
+                    <h3>Romanos</h3>
+                    <p>
+                        <span class="date-highlight">57 d.C.</span>
+                        Considerada su obra maestra teológica, explica sistemáticamente el plan de salvación de Dios. Busca preparar su visita a Roma y unir a creyentes judíos y gentiles.
+                    </p>
+
+                    <h3>Lucas</h3>
+                    <p>
+                        <span class="date-highlight">58-60 d.C.</span>
+                        Escrito por Lucas, el compañero médico de Pablo, para presentar un relato ordenado de Jesús. Resalta la compasión de Cristo por los marginados, los pobres y las mujeres.
+                    </p>
+
+                    <h3>Hechos</h3>
+                    <p>
+                        <span class="date-highlight">60-62 d.C.</span>
+                        La continuación de Lucas, que narra el nacimiento de la Iglesia y la expansión del Evangelio. Culmina con Pablo encarcelado en Roma, predicando el Reino de Dios.
+                    </p>
+
+                    <h3>Efesios</h3>
+                    <p>
+                        <span class="date-highlight">60-62 d.C.</span>
+                        Escrita desde la prisión, se centra en el propósito eterno de Dios de unir todo en Cristo. Destaca la unidad de la Iglesia y la armadura espiritual.
+                    </p>
+
+                    <h3>Filipenses</h3>
+                    <p>
+                        <span class="date-highlight">60-62 d.C.</span>
+                        Conocida como la "epístola del gozo", escrita mientras Pablo estaba preso. Agradece el apoyo de los filipenses y los anima a tener la humildad de Cristo.
+                    </p>
+
+                    <h3>Colosenses</h3>
+                    <p>
+                        <span class="date-highlight">60-62 d.C.</span>
+                        Refuta falsas enseñanzas que restaban importancia a la divinidad de Jesús. Proclama que Cristo es la cabeza de la Iglesia y el centro de la creación.
+                    </p>
+
+                    <h3>Filemón</h3>
+                    <p>
+                        <span class="date-highlight">60-62 d.C.</span>
+                        Una carta privada muy breve sobre un esclavo fugitivo llamado Onésimo que se convirtió al cristianismo. Pablo pide a su amo que lo reciba como a un hermano.
+                    </p>
+
+                    <h3>1 Timoteo</h3>
+                    <p>
+                        <span class="date-highlight">62-64 d.C.</span>
+                        Instrucciones pastorales a su joven discípulo sobre el orden en la iglesia de Éfeso. Establece los requisitos para obispos y diáconos y cómo combatir falsas doctrinas.
+                    </p>
+
+                    <h3>Tito</h3>
+                    <p>
+                        <span class="date-highlight">62-64 d.C.</span>
+                        Similar a 1 Timoteo, dirigida a Tito en la isla de Creta para organizar la iglesia. Enfatiza la importancia de las buenas obras como fruto de la sana doctrina.
+                    </p>
+
+                    <h3>2 Timoteo</h3>
+                    <p>
+                        <span class="date-highlight">66-67 d.C.</span>
+                        El "testamento final" de Pablo, escrito desde una celda romana antes de su martirio. Exhorta a Timoteo a ser valiente, fiel y a predicar siempre la Palabra.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Material Disponible para Estudio</h2>
+
+                    <h3>Notas Bíblicas por Robert Breaker</h3>
+                    <p>
+                        <a href="https://drive.google.com/file/d/12w1T0XMFXPcurxiOjc6tYBrn7IdcKU1U/view?usp=sharing" target="_blank" class="content-link">Ver Notas Bíblicas (PDF/Drive)</a>
+                    </p>
+
+                    <h3>Biblia del Oso</h3>
+                    <p>
+                        <a href="https://drive.google.com/file/d/13_Tp7YY_51Ek2Mtr00fklKjUS-t-qzYc/view?usp=sharing" target="_blank" class="content-link">Ver Biblia del Oso (PDF/Drive)</a>
+                    </p>
+
+                    <h3>NT Interlineado Francisco La Cueva</h3>
+                    <p>
+                        <a href="https://drive.google.com/file/d/1APnpwpWPPLJHqUAmDbSgpwfeBZznwq6B/view?usp=sharing" target="_blank" class="content-link">Ver Nuevo Testamento Interlineado (PDF/Drive)</a>
+                    </p>
+
+                    <h3>Podcast Sobre El Evangelio</h3>
+                    <p>
+                        <a href="https://creators.spotify.com/pod/profile/iglesia-remanente/" target="_blank" class="content-link">Escuchar en Spotify / Plataformas</a>
+                    </p>
+                </section>
+                
+            </div>
+        </main>
+    </div>
+
+    <!-- Botón flotante para móvil -->
+    <button class="mobile-menu-btn" aria-label="Abrir Menú">
+        ☰
+    </button>
+
+    <div class="mobile-overlay"></div>
+    <div class="mobile-sidebar">
+        <h3>Índice</h3>
+        <nav id="toc-mobile" class="toc-list"></nav>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainContent = document.querySelector('.main-content');
+            const headers = mainContent.querySelectorAll('h2, h3');
+            const tocDesktop = document.getElementById('toc-desktop');
+            const tocMobile = document.getElementById('toc-mobile');
+            
+            // Generar Tabla de Contenidos (TOC)
+            headers.forEach((header, index) => {
+                // Crear ID si no existe
+                if (!header.id) {
+                    header.id = 'section-' + index;
+                }
+
+                const link = document.createElement('a');
+                link.href = '#' + header.id;
+                link.textContent = header.textContent;
+                link.className = 'toc-link';
+                
+                const listItem = document.createElement('li');
+                listItem.appendChild(link);
+
+                // Indentación para sub-secciones (h3)
+                if (header.tagName === 'H3') {
+                    link.classList.add('toc-sublink');
+                }
+
+                // Clonar para menú móvil
+                const mobileListItem = listItem.cloneNode(true);
+                
+                tocDesktop.appendChild(listItem);
+                tocMobile.appendChild(mobileListItem);
+            });
+
+            // Lógica Menú Móvil
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileSidebar = document.querySelector('.mobile-sidebar');
+            const overlay = document.querySelector('.mobile-overlay');
+
+            function toggleMenu() {
+                mobileSidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+            }
+
+            menuBtn.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', toggleMenu);
+            
+            // Cerrar menú móvil al hacer click en un enlace
+            tocMobile.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', toggleMenu);
+            });
+
+            // Scroll Spy (Resaltar sección activa)
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -70% 0px', // Activar cuando el elemento esté cerca del top
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        document.querySelectorAll('.toc-link').forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === '#' + id) {
+                                link.classList.add('active');
+                                // Scroll sidebar si es necesario
+                                link.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            headers.forEach(header => observer.observe(header));
+        });
+    </script>
+</body>
+</html>

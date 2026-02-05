@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Estudios Bíblicos - Menú Principal">
+    <title>Estudios Bíblicos</title>
+    
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #18181b;
+            --card-bg: #27272a;
+            --text-main: #d4d4d8;
+            --text-heading: #fbbf24;
+            --accent: #f59e0b;
+            --font-body: 'Merriweather', serif;
+            --font-heading: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-heading);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--text-heading);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        p.subtitle {
+            font-family: var(--font-body);
+            color: #a1a1aa;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid #3f3f46;
+            border-radius: 12px;
+            padding: 2rem;
+            text-decoration: none;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h2 {
+            color: var(--text-main);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.2s;
+        }
+
+        .card:hover h2 {
+            color: var(--accent);
+        }
+
+        .card span {
+            font-family: var(--font-body);
+            color: #71717a;
+            font-size: 0.9rem;
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        footer {
+            margin-top: 4rem;
+            font-size: 0.8rem;
+            color: #52525b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Biblioteca de Estudios</h1>
+        <p class="subtitle">Selecciona un tema para comenzar la lectura</p>
+
+        <div class="grid">
+            <!-- Enlace al archivo del Apocalipsis -->
+            <!-- Asegúrate de renombrar el archivo del Apocalipsis a 'apocalipsis.html' -->
+            <a href="apocalipsis.html" class="card">
+                <div class="icon">📖</div>
+                <h2>Apocalipsis</h2>
+                <span>Orden Cronológico y Profecías</span>
+            </a>
+
+            <!-- Enlace al archivo de Pablo -->
+            <!-- Asegúrate de renombrar el archivo de Pablo a 'pablo.html' -->
+            <a href="pablo.html" class="card">
+                <div class="icon">📜</div>
+                <h2>Apóstol Pablo</h2>
+                <span>Cronología de Cartas y Viajes</span>
+            </a>
+        </div>
+
+        <footer>
+            &copy; Estudios Bíblicos - Versión Web
+        </footer>
+    </div>
+
+</body>
+</html>
